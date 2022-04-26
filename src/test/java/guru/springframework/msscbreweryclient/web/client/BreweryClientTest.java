@@ -11,21 +11,24 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest
 class BreweryClientTest {
+
     @Autowired
     BreweryClient client;
 
     @Test
     void getBeerById() {
         BeerDto dto = client.getBeerById(UUID.randomUUID());
+
         assertNotNull(dto);
     }
 
     @Test
     void testSaveNewBeer() {
         //given
-        BeerDto beerDto = BeerDto.builder().beerName("New beer").build();
+        BeerDto beerDto = BeerDto.builder().beerName("New Beer").build();
 
         URI uri = client.saveNewBeer(beerDto);
 
@@ -34,17 +37,18 @@ class BreweryClientTest {
         System.out.println(uri.toString());
     }
 
+
     @Test
-    void testUpdateBeer(){
+    void testUpdateBeer() {
         //given
-        BeerDto beerDto = BeerDto.builder().beerName("New beer").build();
+        BeerDto beerDto = BeerDto.builder().beerName("New Beer").build();
 
         client.updateBeer(UUID.randomUUID(), beerDto);
-
     }
 
     @Test
     void testDeleteBeer(){
+
         client.deleteBeer(UUID.randomUUID());
     }
 
@@ -56,24 +60,26 @@ class BreweryClientTest {
     }
 
     @Test
-    void testSaveNewCustomer(){
-        CustomerDto customerDto = CustomerDto.builder().name("Joe New").build();
+    void testSaveNewCustomer() {
+        //given
+        CustomerDto customerDto = CustomerDto.builder().name("Joe").build();
         URI uri = client.saveNewCustomer(customerDto);
 
         assertNotNull(uri);
-
         System.out.println(uri.toString());
     }
 
     @Test
-    void testUpdateCustomer(){
+    void testUpdateCustomer() {
+        //given
         CustomerDto customerDto = CustomerDto.builder().name("Jim").build();
 
         client.updateCustomer(UUID.randomUUID(), customerDto);
+
     }
 
     @Test
-    void testDeleteCustomer(){
+    void testDeleteCustomer() {
         client.deleteCustomer(UUID.randomUUID());
     }
 

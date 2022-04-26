@@ -10,12 +10,17 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.util.UUID;
 
+/**
+ * Created by jt on 2019-04-23.
+ */
+@ConfigurationProperties(prefix = "sfg.brewery", ignoreUnknownFields = false)
 @Component
-@ConfigurationProperties(value = "sfg.brewery", ignoreUnknownFields = false)
 public class BreweryClient {
+
     public final String BEER_PATH_V1 = "/api/v1/beer/";
     public final String CUSTOMER_PATH_V1 = "/api/v1/customer/";
     private String apihost;
+
     private final RestTemplate restTemplate;
 
     public BreweryClient(RestTemplateBuilder restTemplateBuilder) {
@@ -56,5 +61,6 @@ public class BreweryClient {
 
     public void deleteCustomer(UUID customerId) {
         restTemplate.delete(apihost + CUSTOMER_PATH_V1 + customerId.toString());
+
     }
 }
